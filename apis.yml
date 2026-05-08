@@ -1,0 +1,29 @@
+aid: coursera
+url: https://raw.githubusercontent.com/api-evangelist/coursera/refs/heads/main/apis.yml
+name: Coursera
+x-type: company
+description: >-
+  Coursera is an online learning platform with thousands of courses, specializations, and degrees from universities and industry partners. APIs for partners, content, and enterprise.
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+tags:
+  - EdTech
+  - MOOC
+  - Learning
+  - Courses
+  - University
+created: '2026-05-08'
+modified: '2026-05-08'
+specificationVersion: '0.19'
+apis: []
+common:
+  - type: Website
+    url: https://www.coursera.org/
+  - type: Plans
+    url: plans/coursera-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/coursera-rate-limits.yml
+  - type: FinOps
+    url: finops/coursera-finops.yml
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
