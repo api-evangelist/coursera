@@ -8,25 +8,25 @@ modified: '2026-05-08'
 reconciled: false
 tags:
 - EdTech
+- Online Learning
+- Catalog
 - MOOC
-- Learning
-- Courses
-- University
 - Rate Limiting
 - Quotas
 - Throttling
-description: Placeholder rate-limit artifact for Coursera. Replace with real limits once researched.
-notes: Initial scaffold — limits have not yet been reconciled.
+description: Specific Catalog API rate limits are not publicly documented. Standard HTTP 429 throttling
+  applies.
+notes: Implement caching and exponential backoff when polling the catalog.
 sources:
-- https://www.coursera.org/
+- https://building.coursera.org/app-platform/catalog/
 responseCodes:
   throttled: 429
 limits:
-- name: Default
-  scope: account
-  metric: varies
-  limit: see provider documentation
-  notes: Pending reconciliation.
+- name: Default Catalog API
+  scope: ip
+  metric: requests
+  limit: not publicly documented
+  notes: Cache results; respect 429.
 policies:
 - name: Backoff Strategy
   description: Clients should implement exponential backoff with jitter and honor any Retry-After header.

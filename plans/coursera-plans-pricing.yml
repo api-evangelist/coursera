@@ -8,34 +8,53 @@ modified: '2026-05-08'
 reconciled: false
 tags:
 - EdTech
+- Online Learning
+- Catalog
 - MOOC
-- Learning
-- Courses
-- University
 - Plans
-description: Placeholder plans/pricing artifact for Coursera. Replace with real published pricing once
-  the pipeline researches the provider's plans page.
-notes: Initial scaffold — plans/pricing have not yet been reconciled.
+description: The Catalog API is publicly accessible without authentication for read-only catalog data.
+  Coursera for Business and Coursera for Campus are sold via enterprise sales.
+notes: No published API plan tiers. Catalog API is free/public.
 sources:
-- https://www.coursera.org/
+- https://building.coursera.org/app-platform/catalog/
+- https://www.coursera.org/business
+- https://www.coursera.org/campus
 plans:
-- id: coursera-default
-  name: To Be Reconciled
-  type: enterprise
-  description: Initial scaffold; replace with provider plan tiers once pricing is reconciled.
+- id: coursera-catalog-public
+  name: Catalog API (Public)
+  type: free
+  description: Read-only catalog data is publicly accessible without authentication.
   entries:
-  - label: API Access
-    name: api_access
+  - label: Catalog Reads
+    name: catalog_reads
     type: flat
-    metric: varies
+    metric: requests
     limit: -1
     timeFrame: usage
     geo: global
     unit: 1
-    price: see https://www.coursera.org/
+    price: free
     userMultiplied: false
   elements:
-  - name: Pending Reconciliation
+  - name: Public Catalog Read
+- id: coursera-business-enterprise
+  name: Coursera for Business / Campus
+  type: enterprise
+  description: Enterprise learning plans sold via sales; pricing not publicly posted.
+  entries:
+  - label: Subscription
+    name: subscription
+    type: flat
+    metric: annual subscription
+    limit: -1
+    timeFrame: yearly
+    geo: global
+    unit: 1
+    price: contact sales
+    userMultiplied: false
+  elements:
+  - name: Coursera for Business
+  - name: Coursera for Campus
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
