@@ -51,6 +51,26 @@ common:
   url: rate-limits/coursera-rate-limits.yml
 - type: FinOps
   url: finops/coursera-finops.yml
+- type: Integrations
+  url: https://www.coursera.org/partners
+integrations:
+  - name: 28DIGITAL Belgium
+  - name: 4EU+ Alliance
+  - name: AAPACE United States
+  - name: AAPC United States
+  - name: Accenture United States
+  - name: Adamson University
+  - name: Adobe United States
+  - name: Advancing Women in Tech United States
+  - name: Akamai Technologies, Inc. United States
+  - name: Alex Genadinik United States
+  - name: Alfaisal University | KLD Saudi Arabia
+  - name: Alibaba Cloud Academy China
+  - name: Alignor
+  - name: Amazon United States
+  - name: Amazon Ads United States
+  - name: Amazon Web Services United States
+  - name: American Council on Exercise United States
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
