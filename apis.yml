@@ -1,7 +1,7 @@
 aid: coursera
 url: https://raw.githubusercontent.com/api-evangelist/coursera/refs/heads/main/apis.yml
 name: Coursera
-x-type: company
+kind: company
 description: Coursera is a global online learning platform offering courses, specializations, professional
   certificates, and degrees. The Catalog API provides public, read-only access to courses, instructors,
   partners, and categories; the Affiliate API supports partner programs.
