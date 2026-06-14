@@ -2,79 +2,84 @@ aid: coursera
 url: https://raw.githubusercontent.com/api-evangelist/coursera/refs/heads/main/apis.yml
 name: Coursera
 kind: company
-description: Coursera is a global online learning platform offering courses, specializations, professional
-  certificates, and degrees. The Catalog API provides public, read-only access to courses, instructors,
-  partners, and categories; the Affiliate API supports partner programs.
+description: Coursera is a global online learning platform offering courses, specializations,
+  professional certificates, and degrees. The Catalog API provides public, read-only
+  access to courses, instructors, partners, and categories; the Affiliate API supports
+  partner programs.
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
-  - EdTech
-  - Online Learning
-  - Catalog
-  - MOOC
+- EdTech
+- Online Learning
+- Catalog
+- MOOC
 created: '2026-05-08'
 modified: '2026-05-08'
 specificationVersion: '0.19'
 apis:
-  - aid: coursera:catalog-api
-    name: Coursera Catalog API
-    description: Public REST API for browsing Coursera's catalog of courses, specializations, instructors,
-      partners, and categories. Verified live at api.coursera.org/api/courses.v1 with 21,000+ courses.
-    humanURL: https://building.coursera.org/app-platform/catalog/
-    baseURL: https://api.coursera.org
-    tags:
-    - Catalog
-    - Read-only
-    - REST
-    properties:
-    - type: Documentation
-      url: https://building.coursera.org/app-platform/catalog/
-    - type: Endpoint
-      url: https://api.coursera.org/api/courses.v1
-  - aid: coursera:affiliate-api
-    name: Coursera Affiliate API
-    description: API for affiliate marketing partners to retrieve catalog data and tracking links.
-    humanURL: https://building.coursera.org/
-    tags:
-    - Affiliate
-    - Marketing
-    properties:
-    - type: Documentation
-      url: https://building.coursera.org/
-common:
-  - type: GitHubOrganization
-    url: https://github.com/coursera
-  - type: LinkedIn
-    url: https://www.linkedin.com/company/coursera
-  - type: Website
-    url: https://www.coursera.org/
-  - type: Developer
+- aid: coursera:catalog-api
+  name: Coursera Catalog API
+  description: Public REST API for browsing Coursera's catalog of courses, specializations,
+    instructors, partners, and categories. Verified live at api.coursera.org/api/courses.v1
+    with 21,000+ courses.
+  humanURL: https://building.coursera.org/app-platform/catalog/
+  baseURL: https://api.coursera.org
+  tags:
+  - Catalog
+  - Read-only
+  - REST
+  properties:
+  - type: Documentation
+    url: https://building.coursera.org/app-platform/catalog/
+  - type: Endpoint
+    url: https://api.coursera.org/api/courses.v1
+  - url: graphql/coursera-graphql.md
+    type: GraphQL
+- aid: coursera:affiliate-api
+  name: Coursera Affiliate API
+  description: API for affiliate marketing partners to retrieve catalog data and tracking
+    links.
+  humanURL: https://building.coursera.org/
+  tags:
+  - Affiliate
+  - Marketing
+  properties:
+  - type: Documentation
     url: https://building.coursera.org/
-  - type: Plans
-    url: plans/coursera-plans-pricing.yml
-  - type: RateLimits
-    url: rate-limits/coursera-rate-limits.yml
-  - type: FinOps
-    url: finops/coursera-finops.yml
-  - type: Integrations
-    url: https://www.coursera.org/partners
+common:
+- type: GitHubOrganization
+  url: https://github.com/coursera
+- type: LinkedIn
+  url: https://www.linkedin.com/company/coursera
+- type: Website
+  url: https://www.coursera.org/
+- type: Developer
+  url: https://building.coursera.org/
+- type: Plans
+  url: plans/coursera-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/coursera-rate-limits.yml
+- type: FinOps
+  url: finops/coursera-finops.yml
+- type: Integrations
+  url: https://www.coursera.org/partners
 integrations:
-  - name: 28DIGITAL Belgium
-  - name: 4EU+ Alliance
-  - name: AAPACE United States
-  - name: AAPC United States
-  - name: Accenture United States
-  - name: Adamson University
-  - name: Adobe United States
-  - name: Advancing Women in Tech United States
-  - name: Akamai Technologies, Inc. United States
-  - name: Alex Genadinik United States
-  - name: Alfaisal University | KLD Saudi Arabia
-  - name: Alibaba Cloud Academy China
-  - name: Alignor
-  - name: Amazon United States
-  - name: Amazon Ads United States
-  - name: Amazon Web Services United States
-  - name: American Council on Exercise United States
+- name: 28DIGITAL Belgium
+- name: 4EU+ Alliance
+- name: AAPACE United States
+- name: AAPC United States
+- name: Accenture United States
+- name: Adamson University
+- name: Adobe United States
+- name: Advancing Women in Tech United States
+- name: Akamai Technologies, Inc. United States
+- name: Alex Genadinik United States
+- name: Alfaisal University | KLD Saudi Arabia
+- name: Alibaba Cloud Academy China
+- name: Alignor
+- name: Amazon United States
+- name: Amazon Ads United States
+- name: Amazon Web Services United States
+- name: American Council on Exercise United States
 maintainers:
-  - FN: Kin Lane
-    email: kin@apievangelist.com
+- FN: Kin Lane
+  email: kin@apievangelist.com

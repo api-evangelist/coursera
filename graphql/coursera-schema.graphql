@@ -1,0 +1,1031 @@
+"""
+Coursera GraphQL Schema (Conceptual)
+Derived from Coursera REST Catalog API, affiliate API, partner documentation,
+and publicly observable platform capabilities.
+Source: https://building.coursera.org/app-platform/catalog/
+"""
+
+scalar DateTime
+scalar URL
+scalar JSON
+
+# -------------------------------------------------------------------
+# Enums
+# -------------------------------------------------------------------
+
+enum CourseLevel {
+  BEGINNER
+  INTERMEDIATE
+  ADVANCED
+  MIXED
+}
+
+enum CourseStatus {
+  DRAFT
+  ACTIVE
+  ARCHIVED
+  RETIRED
+}
+
+enum EnrollmentStatus {
+  ENROLLED
+  COMPLETED
+  DROPPED
+  WAITLISTED
+  NOT_STARTED
+}
+
+enum SubmissionStatus {
+  PENDING
+  SUBMITTED
+  GRADED
+  LATE
+  FAILED
+}
+
+enum GradeStatus {
+  PASSED
+  FAILED
+  PENDING
+  IN_PROGRESS
+}
+
+enum QuestionType {
+  MULTIPLE_CHOICE
+  CHECKBOX
+  TRUE_FALSE
+  FREE_RESPONSE
+  MATCHING
+  FILL_IN_THE_BLANK
+}
+
+enum CertificateType {
+  COURSE
+  SPECIALIZATION
+  PROFESSIONAL_CERTIFICATE
+  DEGREE
+  BADGE
+}
+
+enum WorkspaceStatus {
+  ACTIVE
+  IDLE
+  STOPPED
+  ERROR
+}
+
+enum NotebookKernel {
+  PYTHON3
+  R
+  SQL
+}
+
+enum ForumPostSortOrder {
+  NEWEST
+  OLDEST
+  TOP_VOTED
+  MOST_REPLIES
+}
+
+enum SearchSortOrder {
+  RELEVANCE
+  NEWEST
+  MOST_ENROLLED
+  HIGHEST_RATED
+}
+
+enum PeerReviewStatus {
+  OPEN
+  SUBMITTED
+  GRADED
+  EXPIRED
+}
+
+enum TranslationLocale {
+  EN
+  ES
+  FR
+  PT
+  ZH
+  AR
+  DE
+  JA
+  KO
+  HI
+  RU
+  IT
+}
+
+# -------------------------------------------------------------------
+# Interfaces
+# -------------------------------------------------------------------
+
+interface Node {
+  id: ID!
+}
+
+interface LearningItem {
+  id: ID!
+  slug: String!
+  name: String!
+  description: String
+  imageUrl: URL
+  level: CourseLevel
+  tags: [SkillTag!]
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+interface Enrollable {
+  id: ID!
+  isEnrolled: Boolean!
+  enrollmentCount: Int
+}
+
+# -------------------------------------------------------------------
+# Core Catalog Types
+# -------------------------------------------------------------------
+
+"""Represents a single course on Coursera."""
+type Course implements Node & LearningItem & Enrollable {
+  id: ID!
+  slug: String!
+  name: String!
+  description: String
+  imageUrl: URL
+  level: CourseLevel
+  tags: [SkillTag!]
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  shortDescription: String
+  workload: String
+  status: CourseStatus!
+  language: String
+  subtitleLanguages: [String!]
+  rating: Float
+  ratingCount: Int
+  enrollmentCount: Int
+  isEnrolled: Boolean!
+  isFree: Boolean!
+  primaryLanguage: String
+  instructors: [InstructorProfile!]
+  partner: Partner
+  modules: [Module!]
+  skillTags: [SkillTag!]
+  certificate: Certificate
+  specializations: [Specialization!]
+  translations: [Translation!]
+  recommendations: [Recommendation!]
+  careerOutcomes: [CareerOutcome!]
+}
+
+"""A specialization is an ordered sequence of courses leading to a certificate."""
+type Specialization implements Node & LearningItem & Enrollable {
+  id: ID!
+  slug: String!
+  name: String!
+  description: String
+  imageUrl: URL
+  level: CourseLevel
+  tags: [SkillTag!]
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  shortDescription: String
+  courses: [Course!]!
+  partner: Partner
+  instructors: [InstructorProfile!]
+  enrollmentCount: Int
+  isEnrolled: Boolean!
+  rating: Float
+  ratingCount: Int
+  certificate: Certificate
+  estimatedCompletionMonths: Int
+  isFree: Boolean!
+  careerOutcomes: [CareerOutcome!]
+}
+
+"""An accredited online degree program offered through Coursera."""
+type Degree implements Node & LearningItem {
+  id: ID!
+  slug: String!
+  name: String!
+  description: String
+  imageUrl: URL
+  level: CourseLevel
+  tags: [SkillTag!]
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  university: University
+  partner: Partner
+  degreeType: String
+  durationYears: Float
+  totalCredits: Int
+  tuitionUSD: Float
+  applicationDeadline: DateTime
+  concentrations: [String!]
+  courses: [Course!]
+  careerOutcomes: [CareerOutcome!]
+}
+
+"""Coursera's online degree programs with flexible scheduling."""
+type OnlineDegree implements Node {
+  id: ID!
+  name: String!
+  slug: String!
+  degree: Degree!
+  cohorts: [Cohort!]
+  admissionsEmail: String
+  applicationUrl: URL
+}
+
+# -------------------------------------------------------------------
+# Institutional Types
+# -------------------------------------------------------------------
+
+"""A content provider — university or company — offering courses on Coursera."""
+type Partner implements Node {
+  id: ID!
+  name: String!
+  slug: String!
+  description: String
+  logoUrl: URL
+  websiteUrl: URL
+  location: String
+  courseCount: Int
+  instructors: [InstructorProfile!]
+  courses: [Course!]
+  specializations: [Specialization!]
+  degrees: [Degree!]
+}
+
+"""A university partner delivering degree and certificate programs."""
+type University implements Node {
+  id: ID!
+  name: String!
+  slug: String!
+  description: String
+  logoUrl: URL
+  country: String
+  ranking: Int
+  partner: Partner
+  degrees: [Degree!]
+}
+
+"""A Coursera instructor who teaches one or more courses."""
+type InstructorProfile implements Node {
+  id: ID!
+  fullName: String!
+  slug: String!
+  title: String
+  biography: String
+  photoUrl: URL
+  partnerName: String
+  courses: [Course!]
+  rating: Float
+  studentCount: Int
+  instructorCourses: [InstructorCourse!]
+}
+
+"""Association between an instructor and a specific course with role metadata."""
+type InstructorCourse implements Node {
+  id: ID!
+  instructor: InstructorProfile!
+  course: Course!
+  role: String
+  displayOrder: Int
+}
+
+# -------------------------------------------------------------------
+# Curriculum Structure
+# -------------------------------------------------------------------
+
+"""A top-level unit of a course, grouping related lessons."""
+type Module implements Node {
+  id: ID!
+  name: String!
+  description: String
+  course: Course!
+  order: Int!
+  lessons: [Lesson!]
+  estimatedHours: Float
+  isLocked: Boolean!
+}
+
+"""A sub-unit within a module containing lectures and assessments."""
+type Lesson implements Node {
+  id: ID!
+  name: String!
+  description: String
+  module: Module!
+  order: Int!
+  lectures: [Lecture!]
+  gradedItems: [GradedItem!]
+  estimatedMinutes: Int
+}
+
+"""A video or reading item within a lesson."""
+type Lecture implements Node {
+  id: ID!
+  name: String!
+  lesson: Lesson!
+  order: Int!
+  durationSeconds: Int
+  videoUrl: URL
+  transcriptUrl: URL
+  subtitleLocales: [String!]
+  isCompleted: Boolean!
+}
+
+# -------------------------------------------------------------------
+# Assessment Types
+# -------------------------------------------------------------------
+
+"""A graded component in a lesson — quiz, assignment, or peer review."""
+type GradedItem implements Node {
+  id: ID!
+  name: String!
+  lesson: Lesson!
+  type: String!
+  maxScore: Float!
+  passingScore: Float!
+  attemptLimit: Int
+  deadline: DateTime
+}
+
+"""A quiz composed of one or more questions."""
+type Quiz implements Node {
+  id: ID!
+  name: String!
+  gradedItem: GradedItem!
+  questions: [QuizQuestion!]!
+  timeLimitMinutes: Int
+  shuffleQuestions: Boolean
+}
+
+"""A single question within a quiz."""
+type QuizQuestion implements Node {
+  id: ID!
+  quiz: Quiz!
+  questionText: String!
+  questionType: QuestionType!
+  options: [String!]
+  correctOptions: [String!]
+  explanation: String
+  points: Float!
+  order: Int!
+}
+
+"""A written or code assignment submitted by a learner."""
+type Assignment implements Node {
+  id: ID!
+  name: String!
+  gradedItem: GradedItem!
+  instructions: String
+  rubric: JSON
+  dueDate: DateTime
+  allowLateSubmission: Boolean!
+  latePenaltyPercent: Float
+  submissions: [AssignmentSubmission!]
+}
+
+"""A learner's submission for an assignment."""
+type AssignmentSubmission implements Node {
+  id: ID!
+  assignment: Assignment!
+  learner: ProgressSummary
+  submittedAt: DateTime!
+  status: SubmissionStatus!
+  score: Float
+  feedback: String
+  attachmentUrl: URL
+}
+
+"""A coding assignment with automated test evaluation."""
+type ProgrammingAssignment implements Node {
+  id: ID!
+  name: String!
+  gradedItem: GradedItem!
+  language: String!
+  starterCodeUrl: URL
+  testCasesUrl: URL
+  allowedAttempts: Int
+  timeLimitSeconds: Int
+  memoryLimitMB: Int
+}
+
+"""A peer-reviewed submission artifact."""
+type PeerReview implements Node {
+  id: ID!
+  assignment: Assignment!
+  submission: AssignmentSubmission!
+  reviewer: ProgressSummary
+  status: PeerReviewStatus!
+  score: Float
+  feedback: String
+  reviewedAt: DateTime
+  rubricResponse: JSON
+}
+
+"""Configuration for peer review assessments."""
+type PeerReviewAssignment implements Node {
+  id: ID!
+  assignment: Assignment!
+  requiredReviewCount: Int!
+  requiredReviewByCount: Int!
+  openDays: Int!
+}
+
+# -------------------------------------------------------------------
+# Enrollment and Progress
+# -------------------------------------------------------------------
+
+"""A learner's enrollment in a specific course."""
+type CourseEnrollment implements Node {
+  id: ID!
+  course: Course!
+  enrolledAt: DateTime!
+  status: EnrollmentStatus!
+  progressPercent: Float!
+  lastActivityAt: DateTime
+  grade: CourseGrade
+  certificate: Certificate
+}
+
+"""A learner's enrollment in a specialization."""
+type SpecializationEnrollment implements Node {
+  id: ID!
+  specialization: Specialization!
+  enrolledAt: DateTime!
+  status: EnrollmentStatus!
+  completedCourseCount: Int!
+  certificate: Certificate
+}
+
+"""A learner's enrollment in a cohort-based program."""
+type CohortEnrollment implements Node {
+  id: ID!
+  cohort: Cohort!
+  enrolledAt: DateTime!
+  status: EnrollmentStatus!
+  progressPercent: Float!
+}
+
+"""Grade summary for a learner in a course."""
+type CourseGrade implements Node {
+  id: ID!
+  courseEnrollment: CourseEnrollment!
+  overallScore: Float
+  status: GradeStatus!
+  passingGrade: Float!
+  gradedItemScores: [GradedItemScore!]
+  verifiedAt: DateTime
+}
+
+"""Score for a single graded item."""
+type GradedItemScore implements Node {
+  id: ID!
+  gradedItem: GradedItem!
+  score: Float!
+  maxScore: Float!
+  attemptCount: Int!
+  lastAttemptAt: DateTime
+}
+
+"""Aggregate progress snapshot for a learner across courses."""
+type ProgressSummary implements Node {
+  id: ID!
+  learnerId: ID!
+  totalCoursesEnrolled: Int!
+  totalCoursesCompleted: Int!
+  totalCertificates: Int!
+  totalLearningHours: Float!
+  currentStreak: Int!
+  longestStreak: Int!
+  lastActivityAt: DateTime
+  enrollments: [CourseEnrollment!]
+}
+
+"""A named goal set by a learner to guide course recommendations."""
+type LearnerGoal implements Node {
+  id: ID!
+  learnerId: ID!
+  goalType: String!
+  targetSkill: SkillTag
+  targetRole: String
+  targetDate: DateTime
+  isAchieved: Boolean!
+  createdAt: DateTime!
+}
+
+"""An ordered set of courses and specializations forming a learning path."""
+type LearnerPath implements Node {
+  id: ID!
+  name: String!
+  description: String
+  learnerId: ID!
+  items: [LearningPathItem!]!
+  estimatedHours: Float
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+"""A single step in a learner's custom path."""
+type LearningPathItem implements Node {
+  id: ID!
+  path: LearnerPath!
+  order: Int!
+  course: Course
+  specialization: Specialization
+  isCompleted: Boolean!
+}
+
+"""A progress milestone achieved during a course or specialization."""
+type Milestone implements Node {
+  id: ID!
+  name: String!
+  description: String
+  course: Course
+  specialization: Specialization
+  achievedAt: DateTime
+  badgeImageUrl: URL
+}
+
+# -------------------------------------------------------------------
+# Credentials
+# -------------------------------------------------------------------
+
+"""A digital certificate issued upon course or specialization completion."""
+type Certificate implements Node {
+  id: ID!
+  learnerId: ID!
+  certificateType: CertificateType!
+  course: Course
+  specialization: Specialization
+  issuedAt: DateTime!
+  expiresAt: DateTime
+  verificationUrl: URL
+  pdfUrl: URL
+  shareUrl: URL
+  grade: Float
+}
+
+"""Coursera Plus subscription granting access to the majority of the catalog."""
+type CourseraPlus implements Node {
+  id: ID!
+  learnerId: ID!
+  subscribedAt: DateTime!
+  expiresAt: DateTime
+  isActive: Boolean!
+  planType: String!
+  includedCertificateCount: Int
+}
+
+"""A digital badge earned for skill or milestone completion."""
+type LearnerBadge implements Node {
+  id: ID!
+  learnerId: ID!
+  name: String!
+  description: String
+  imageUrl: URL
+  issuer: String!
+  issuedAt: DateTime!
+  verificationUrl: URL
+  skill: SkillTag
+  milestone: Milestone
+}
+
+# -------------------------------------------------------------------
+# Cohorts and Scheduling
+# -------------------------------------------------------------------
+
+"""A scheduled instance of a degree or program with defined start/end dates."""
+type Cohort implements Node {
+  id: ID!
+  name: String!
+  onlineDegree: OnlineDegree
+  startDate: DateTime!
+  endDate: DateTime!
+  maxEnrollment: Int
+  currentEnrollment: Int
+  isOpen: Boolean!
+  schedule: CohortSchedule
+  enrollments: [CohortEnrollment!]
+}
+
+"""The weekly schedule and pacing details for a cohort."""
+type CohortSchedule implements Node {
+  id: ID!
+  cohort: Cohort!
+  sessionsPerWeek: Int!
+  hoursPerWeek: Float!
+  liveSessionDays: [String!]
+  liveSessionTime: String
+  timezone: String
+}
+
+# -------------------------------------------------------------------
+# Workspaces
+# -------------------------------------------------------------------
+
+"""A cloud-based coding environment for programming assignments."""
+type Workspace implements Node {
+  id: ID!
+  name: String!
+  learnerId: ID!
+  course: Course
+  programmingAssignment: ProgrammingAssignment
+  language: String!
+  status: WorkspaceStatus!
+  createdAt: DateTime!
+  sessions: [WorkspaceSession!]
+}
+
+"""A single active session within a workspace."""
+type WorkspaceSession implements Node {
+  id: ID!
+  workspace: Workspace!
+  startedAt: DateTime!
+  endedAt: DateTime
+  durationSeconds: Int
+  cpuUsageSeconds: Float
+  memoryPeakMB: Float
+}
+
+"""A Jupyter notebook within a workspace."""
+type Notebook implements Node {
+  id: ID!
+  workspace: Workspace!
+  title: String!
+  kernel: NotebookKernel!
+  contentUrl: URL
+  lastSavedAt: DateTime
+  cellCount: Int
+}
+
+# -------------------------------------------------------------------
+# Community
+# -------------------------------------------------------------------
+
+"""A discussion thread in a course forum."""
+type ForumThread implements Node {
+  id: ID!
+  course: Course!
+  lesson: Lesson
+  title: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  authorId: ID!
+  isPinned: Boolean!
+  isLocked: Boolean!
+  voteCount: Int!
+  replyCount: Int!
+  posts: [ForumPost!]
+}
+
+"""A post within a forum thread."""
+type ForumPost implements Node {
+  id: ID!
+  thread: ForumThread!
+  content: String!
+  authorId: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  voteCount: Int!
+  isAnswer: Boolean!
+  parentPost: ForumPost
+  replies: [ForumPost!]
+}
+
+"""A general discussion item attached to a lesson or course."""
+type Discussion implements Node {
+  id: ID!
+  course: Course!
+  lesson: Lesson
+  title: String!
+  body: String!
+  authorId: ID!
+  createdAt: DateTime!
+  replyCount: Int!
+  isResolved: Boolean!
+}
+
+"""A course or platform announcement from an instructor or Coursera."""
+type Announcement implements Node {
+  id: ID!
+  course: Course
+  title: String!
+  body: String!
+  authorId: ID!
+  publishedAt: DateTime!
+  isGlobal: Boolean!
+}
+
+# -------------------------------------------------------------------
+# Discovery and Personalization
+# -------------------------------------------------------------------
+
+"""A skill or topic tag applied to courses and learner profiles."""
+type SkillTag implements Node {
+  id: ID!
+  name: String!
+  slug: String!
+  description: String
+  courseCount: Int
+  category: String
+  relatedSkills: [SkillTag!]
+}
+
+"""A course or specialization recommended for a learner."""
+type Recommendation implements Node {
+  id: ID!
+  learnerId: ID!
+  course: Course
+  specialization: Specialization
+  reason: String
+  score: Float!
+  generatedAt: DateTime!
+}
+
+"""A result from a catalog search query."""
+type SearchResult implements Node {
+  id: ID!
+  resultType: String!
+  course: Course
+  specialization: Specialization
+  degree: Degree
+  partner: Partner
+  relevanceScore: Float!
+  highlightedTitle: String
+  highlightedDescription: String
+}
+
+# -------------------------------------------------------------------
+# Career Outcomes
+# -------------------------------------------------------------------
+
+"""Outcome data associated with completing a course or specialization."""
+type CareerOutcome implements Node {
+  id: ID!
+  course: Course
+  specialization: Specialization
+  degree: Degree
+  outcomeType: String!
+  description: String
+  percentageReporting: Float
+  medianSalaryUSD: Float
+  salaryData: [SalaryData!]
+  jobTitles: [String!]
+}
+
+"""Salary range data for a particular role or skill area."""
+type SalaryData implements Node {
+  id: ID!
+  role: String!
+  percentile25USD: Float
+  medianUSD: Float!
+  percentile75USD: Float
+  country: String
+  year: Int
+  source: String
+}
+
+# -------------------------------------------------------------------
+# Localization
+# -------------------------------------------------------------------
+
+"""A translation of a course or learning item into a specific locale."""
+type Translation implements Node {
+  id: ID!
+  locale: TranslationLocale!
+  course: Course
+  specialization: Specialization
+  title: String!
+  description: String
+  subtitlesAvailable: Boolean!
+  isHumanTranslated: Boolean!
+}
+
+# -------------------------------------------------------------------
+# Pagination Wrappers
+# -------------------------------------------------------------------
+
+type PageInfo {
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+  endCursor: String
+}
+
+type CourseConnection {
+  edges: [CourseEdge!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type CourseEdge {
+  node: Course!
+  cursor: String!
+}
+
+type SpecializationConnection {
+  edges: [SpecializationEdge!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type SpecializationEdge {
+  node: Specialization!
+  cursor: String!
+}
+
+type SearchResultConnection {
+  edges: [SearchResultEdge!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type SearchResultEdge {
+  node: SearchResult!
+  cursor: String!
+}
+
+# -------------------------------------------------------------------
+# Input Types
+# -------------------------------------------------------------------
+
+input CourseFilterInput {
+  level: CourseLevel
+  language: String
+  partnerSlug: String
+  isFree: Boolean
+  skillTagSlug: String
+  status: CourseStatus
+}
+
+input SearchInput {
+  query: String!
+  sortOrder: SearchSortOrder
+  filters: CourseFilterInput
+  locale: TranslationLocale
+  first: Int
+  after: String
+}
+
+input EnrollCourseInput {
+  courseSlug: String!
+  learnerId: ID!
+}
+
+input CreateLearnerGoalInput {
+  learnerId: ID!
+  goalType: String!
+  targetSkillSlug: String
+  targetRole: String
+  targetDate: DateTime
+}
+
+input ForumPostInput {
+  threadId: ID!
+  content: String!
+  parentPostId: ID
+}
+
+input ForumThreadInput {
+  courseSlug: String!
+  lessonId: ID
+  title: String!
+  body: String!
+}
+
+# -------------------------------------------------------------------
+# Root Types
+# -------------------------------------------------------------------
+
+type Query {
+  """Fetch a single course by slug."""
+  course(slug: String!): Course
+
+  """Fetch a single specialization by slug."""
+  specialization(slug: String!): Specialization
+
+  """Fetch a degree by slug."""
+  degree(slug: String!): Degree
+
+  """Fetch an online degree by slug."""
+  onlineDegree(slug: String!): OnlineDegree
+
+  """Fetch a partner by slug."""
+  partner(slug: String!): Partner
+
+  """Fetch a university by slug."""
+  university(slug: String!): University
+
+  """Fetch an instructor profile by slug."""
+  instructor(slug: String!): InstructorProfile
+
+  """Browse all courses with optional filtering and pagination."""
+  courses(filter: CourseFilterInput, first: Int, after: String): CourseConnection!
+
+  """Browse all specializations."""
+  specializations(partnerSlug: String, first: Int, after: String): SpecializationConnection!
+
+  """Full-text search across the catalog."""
+  search(input: SearchInput!): SearchResultConnection!
+
+  """Fetch a learner's progress summary."""
+  learnerProgress(learnerId: ID!): ProgressSummary
+
+  """Fetch all active enrollments for a learner."""
+  enrollments(learnerId: ID!, status: EnrollmentStatus): [CourseEnrollment!]!
+
+  """Fetch all certificates for a learner."""
+  certificates(learnerId: ID!): [Certificate!]!
+
+  """Fetch all badges for a learner."""
+  badges(learnerId: ID!): [LearnerBadge!]!
+
+  """Fetch a learner's Coursera Plus subscription."""
+  courseraPlus(learnerId: ID!): CourseraPlus
+
+  """Fetch forum threads for a course."""
+  forumThreads(courseSlug: String!, lessonId: ID, sortOrder: ForumPostSortOrder, first: Int, after: String): [ForumThread!]!
+
+  """Fetch a skill tag by slug."""
+  skillTag(slug: String!): SkillTag
+
+  """Browse all skill tags."""
+  skillTags(category: String, first: Int): [SkillTag!]!
+
+  """Fetch recommendations for a learner."""
+  recommendations(learnerId: ID!, limit: Int): [Recommendation!]!
+
+  """Fetch a cohort by ID."""
+  cohort(id: ID!): Cohort
+
+  """Fetch a workspace by ID."""
+  workspace(id: ID!): Workspace
+
+  """Fetch a learner's workspaces."""
+  workspaces(learnerId: ID!): [Workspace!]!
+
+  """Fetch career outcome data for a course."""
+  careerOutcomes(courseSlug: String): [CareerOutcome!]!
+
+  """Fetch salary data for a role."""
+  salaryData(role: String!, country: String): [SalaryData!]!
+}
+
+type Mutation {
+  """Enroll a learner in a course."""
+  enrollCourse(input: EnrollCourseInput!): CourseEnrollment!
+
+  """Drop a learner from a course."""
+  dropCourse(enrollmentId: ID!): CourseEnrollment!
+
+  """Mark a lecture as complete."""
+  completeLecture(lectureId: ID!, learnerId: ID!): Lecture!
+
+  """Submit a quiz attempt."""
+  submitQuizAttempt(quizId: ID!, learnerId: ID!, answers: JSON!): CourseGrade!
+
+  """Submit an assignment."""
+  submitAssignment(assignmentId: ID!, learnerId: ID!, attachmentUrl: URL!): AssignmentSubmission!
+
+  """Submit a peer review."""
+  submitPeerReview(submissionId: ID!, reviewerId: ID!, rubricResponse: JSON!, feedback: String): PeerReview!
+
+  """Create a forum thread."""
+  createForumThread(input: ForumThreadInput!): ForumThread!
+
+  """Post to a forum thread."""
+  createForumPost(input: ForumPostInput!): ForumPost!
+
+  """Vote on a forum post."""
+  voteForumPost(postId: ID!, learnerId: ID!, upvote: Boolean!): ForumPost!
+
+  """Create a learner goal."""
+  createLearnerGoal(input: CreateLearnerGoalInput!): LearnerGoal!
+
+  """Mark a learner goal as achieved."""
+  achieveLearnerGoal(goalId: ID!): LearnerGoal!
+
+  """Start a workspace session."""
+  startWorkspaceSession(workspaceId: ID!): WorkspaceSession!
+
+  """Stop a workspace session."""
+  stopWorkspaceSession(sessionId: ID!): WorkspaceSession!
+}
+
+type Subscription {
+  """Subscribe to grade updates for a learner in a course."""
+  gradeUpdated(enrollmentId: ID!): CourseGrade!
+
+  """Subscribe to new forum posts in a thread."""
+  forumPostCreated(threadId: ID!): ForumPost!
+
+  """Subscribe to workspace session status changes."""
+  workspaceStatusChanged(workspaceId: ID!): WorkspaceSession!
+
+  """Subscribe to new announcements for a course."""
+  announcementPublished(courseSlug: String!): Announcement!
+}
