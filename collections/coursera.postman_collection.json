@@ -1,0 +1,393 @@
+{
+  "item": [
+    {
+      "id": "a0459ffb-a827-4e49-8cd7-ae4f406657d6",
+      "name": "Catalog",
+      "description": {
+        "content": "Public catalog browsing",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "46f2a2f8-24e8-4bf4-ae46-a467848c0d8f",
+          "name": "List courses",
+          "request": {
+            "name": "List courses",
+            "description": {
+              "content": "Returns a paginated list of courses available on Coursera.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "courses.v1"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "<string>",
+                  "description": "Pagination offset (e.g. \"100\")."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Number of results to return per page."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c02502fb-b84a-462c-98f3-74dd6dec1e68",
+              "name": "A paginated list of courses.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "courses.v1"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"elements\": [\n    {\n      \"id\": \"string\",\n      \"slug\": \"string\",\n      \"name\": \"string\",\n      \"courseType\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"slug\": \"string\",\n      \"name\": \"string\",\n      \"courseType\": \"string\"\n    }\n  ],\n  \"paging\": {\n    \"next\": \"string\",\n    \"total\": \"string\"\n  },\n  \"linked\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "15baae8b-29ad-4e6a-ad96-31724ea777c5",
+          "name": "List on-demand specializations",
+          "request": {
+            "name": "List on-demand specializations",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "onDemandSpecializations.v1"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "835cbc3e-fe50-41c0-8890-94a54b3697ee",
+              "name": "A paginated list of specializations.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "onDemandSpecializations.v1"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"elements\": [\n    {\n      \"id\": \"string\",\n      \"slug\": \"string\",\n      \"name\": \"string\",\n      \"tagline\": \"string\",\n      \"description\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"slug\": \"string\",\n      \"name\": \"string\",\n      \"tagline\": \"string\",\n      \"description\": \"string\"\n    }\n  ],\n  \"paging\": {\n    \"next\": \"string\",\n    \"total\": \"string\"\n  },\n  \"linked\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "46c48bc7-5ff6-4b75-bce1-5a32babb43ab",
+          "name": "List partner organizations",
+          "request": {
+            "name": "List partner organizations",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "partners.v1"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9e2e78f6-3155-43ab-a283-3ca52838e110",
+              "name": "A paginated list of partner organizations.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "partners.v1"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"elements\": [\n    {\n      \"id\": 2317,\n      \"name\": \"string\",\n      \"shortName\": \"string\"\n    },\n    {\n      \"id\": 3928,\n      \"name\": \"string\",\n      \"shortName\": \"string\"\n    }\n  ],\n  \"paging\": {\n    \"next\": \"string\",\n    \"total\": \"string\"\n  },\n  \"linked\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6ded677a-7d58-407a-b89b-a1060b70630f",
+          "name": "List instructors",
+          "request": {
+            "name": "List instructors",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "instructors.v1"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "68e02e2b-893e-4911-8f46-084fbecaf6e1",
+              "name": "A paginated list of instructors.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "instructors.v1"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"elements\": [\n    {\n      \"id\": \"string\",\n      \"fullName\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"fullName\": \"string\"\n    }\n  ],\n  \"paging\": {\n    \"next\": \"string\",\n    \"total\": \"string\"\n  },\n  \"linked\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.coursera.org",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "69e59f38-6b50-45f3-ad10-1a0846723e17",
+    "name": "Coursera Catalog API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Coursera Catalog API provides public, read-only access to Coursera's\ncatalog of courses, specializations, partners, and instructors. Endpoints\nreturn paginated JSON responses with `elements`, `paging`, and `linked`\nfields. No authentication is required for the public catalog endpoints.\n\n\nContact Support:\n Name: Coursera",
+      "type": "text/plain"
+    }
+  }
+}
