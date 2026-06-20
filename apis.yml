@@ -6,7 +6,7 @@ description: Coursera is a global online learning platform offering courses, spe
   professional certificates, and degrees. The Catalog API provides public, read-only
   access to courses, instructors, partners, and categories; the Affiliate API supports
   partner programs.
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags:
 - EdTech
 - Online Learning
