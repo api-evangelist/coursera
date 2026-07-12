@@ -46,6 +46,8 @@ apis:
   - type: Documentation
     url: https://building.coursera.org/
 common:
+- type: DomainSecurity
+  url: security/coursera-domain-security.yml
 - type: GitHubOrganization
   url: https://github.com/coursera
 - type: LinkedIn
@@ -62,6 +64,8 @@ common:
   url: finops/coursera-finops.yml
 - type: Integrations
   url: https://www.coursera.org/partners
+- url: https://blog.coursera.org/feed/
+  type: Blog
 integrations:
 - name: 28DIGITAL Belgium
 - name: 4EU+ Alliance
