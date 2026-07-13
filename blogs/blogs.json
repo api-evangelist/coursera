@@ -1,0 +1,14 @@
+{
+  "repo": "coursera",
+  "feeds": [
+    {
+      "source": "https://blog.coursera.org/feed/",
+      "feed_url": "https://blog.coursera.org/feed/",
+      "title": "",
+      "saved": 0,
+      "method": "feed"
+    }
+  ],
+  "fetched": "2026-07-11T11:50:51Z",
+  "post_count": 11
+}
