@@ -46,6 +46,8 @@ apis:
   - type: Documentation
     url: https://building.coursera.org/
 common:
+- type: AgenticAccess
+  url: agentic-access/coursera-agentic-access.yml
 - type: DomainSecurity
   url: security/coursera-domain-security.yml
 - type: GitHubOrganization
