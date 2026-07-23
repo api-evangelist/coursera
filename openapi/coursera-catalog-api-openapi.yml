@@ -1,41 +1,46 @@
 openapi: 3.1.0
 info:
   title: Coursera Catalog API
-  description: |
-    The Coursera Catalog API provides public, read-only access to Coursera's
+  description: 'The Coursera Catalog API provides public, read-only access to Coursera''s
+
     catalog of courses, specializations, partners, and instructors. Endpoints
+
     return paginated JSON responses with `elements`, `paging`, and `linked`
+
     fields. No authentication is required for the public catalog endpoints.
+
+    '
   version: v1
   contact:
     name: Coursera
     url: https://building.coursera.org/app-platform/catalog/
 servers:
-  - url: https://api.coursera.org
-    description: Coursera Catalog API
+- url: https://api.coursera.org
+  description: Coursera Catalog API
 tags:
-  - name: Catalog
-    description: Public catalog browsing
+- name: Catalog
+  description: Public catalog browsing
 paths:
   /api/courses.v1:
     get:
-      tags: [Catalog]
+      tags:
+      - Catalog
       summary: List courses
       description: Returns a paginated list of courses available on Coursera.
       operationId: listCourses
       parameters:
-        - in: query
-          name: start
-          required: false
-          schema:
-            type: string
-          description: Pagination offset (e.g. "100").
-        - in: query
-          name: limit
-          required: false
-          schema:
-            type: integer
-          description: Number of results to return per page.
+      - in: query
+        name: start
+        required: false
+        schema:
+          type: string
+        description: Pagination offset (e.g. "100").
+      - in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
+        description: Number of results to return per page.
       responses:
         '200':
           description: A paginated list of courses.
@@ -54,20 +59,21 @@ paths:
                     type: object
   /api/onDemandSpecializations.v1:
     get:
-      tags: [Catalog]
+      tags:
+      - Catalog
       summary: List on-demand specializations
       operationId: listSpecializations
       parameters:
-        - in: query
-          name: start
-          required: false
-          schema:
-            type: string
-        - in: query
-          name: limit
-          required: false
-          schema:
-            type: integer
+      - in: query
+        name: start
+        required: false
+        schema:
+          type: string
+      - in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
       responses:
         '200':
           description: A paginated list of specializations.
@@ -86,20 +92,21 @@ paths:
                     type: object
   /api/partners.v1:
     get:
-      tags: [Catalog]
+      tags:
+      - Catalog
       summary: List partner organizations
       operationId: listPartners
       parameters:
-        - in: query
-          name: start
-          required: false
-          schema:
-            type: string
-        - in: query
-          name: limit
-          required: false
-          schema:
-            type: integer
+      - in: query
+        name: start
+        required: false
+        schema:
+          type: string
+      - in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
       responses:
         '200':
           description: A paginated list of partner organizations.
@@ -118,20 +125,21 @@ paths:
                     type: object
   /api/instructors.v1:
     get:
-      tags: [Catalog]
+      tags:
+      - Catalog
       summary: List instructors
       operationId: listInstructors
       parameters:
-        - in: query
-          name: start
-          required: false
-          schema:
-            type: string
-        - in: query
-          name: limit
-          required: false
-          schema:
-            type: integer
+      - in: query
+        name: start
+        required: false
+        schema:
+          type: string
+      - in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
       responses:
         '200':
           description: A paginated list of instructors.
@@ -162,6 +170,13 @@ components:
         courseType:
           type: string
           description: e.g. "v2.ondemand"
+    Paging:
+      type: object
+      properties:
+        next:
+          type: string
+        total:
+          type: string
     Specialization:
       type: object
       properties:
@@ -190,11 +205,4 @@ components:
         id:
           type: string
         fullName:
-          type: string
-    Paging:
-      type: object
-      properties:
-        next:
-          type: string
-        total:
           type: string
