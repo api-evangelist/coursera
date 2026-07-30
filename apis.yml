@@ -6,7 +6,19 @@ description: Coursera is a global online learning platform offering courses, spe
   professional certificates, and degrees. The Catalog API provides public, read-only
   access to courses, instructors, partners, and categories; the Affiliate API supports
   partner programs.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: paid
+  onboarding: approval
+  trial: false
+  try_now: false
+  public: false
+  label: Paid · Requires approval
+  confidence: medium
+  source:
+  - plans
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/coursera.png
 tags:
 - EdTech
 - Online Learning
@@ -18,9 +30,9 @@ specificationVersion: '0.19'
 apis:
 - aid: coursera:catalog-api
   name: Coursera Catalog API
-  description: Public REST API for browsing Coursera's catalog of courses, specializations,
-    instructors, partners, and categories. Verified live at api.coursera.org/api/courses.v1
-    with 21,000+ courses.
+  description: >-
+    Public REST API for browsing Coursera's catalog of courses, specializations, instructors, partners,
+    and categories. Verified live at api.coursera.org/api/courses.v1 with 21,000+ courses.
   humanURL: https://building.coursera.org/app-platform/catalog/
   baseURL: https://api.coursera.org
   tags:
@@ -36,8 +48,7 @@ apis:
     type: GraphQL
 - aid: coursera:affiliate-api
   name: Coursera Affiliate API
-  description: API for affiliate marketing partners to retrieve catalog data and tracking
-    links.
+  description: API for affiliate marketing partners to retrieve catalog data and tracking links.
   humanURL: https://building.coursera.org/
   tags:
   - Affiliate
@@ -45,6 +56,16 @@ apis:
   properties:
   - type: Documentation
     url: https://building.coursera.org/
+- aid: coursera:coursera-catalog-api
+  name: Coursera Catalog API
+  description: Public catalog browsing
+  humanURL: https://building.coursera.org/app-platform/catalog/
+  baseURL: https://api.coursera.org
+  tags:
+  - Catalog
+  properties:
+  - type: OpenAPI
+    url: openapi/coursera-catalog-api-openapi.yml
 common:
 - type: AgenticAccess
   url: agentic-access/coursera-agentic-access.yml
