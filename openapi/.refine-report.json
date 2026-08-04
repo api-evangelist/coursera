@@ -1,0 +1,14 @@
+{
+  "provider": "coursera",
+  "sources": [
+    "coursera-catalog-api-openapi.yml"
+  ],
+  "outputs": [
+    "coursera-catalog-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
