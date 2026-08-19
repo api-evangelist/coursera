@@ -1,0 +1,112 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Coursera Catalog API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Catalog",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List courses",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coursera.org/api/courses.v1",
+            "params": [
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "Pagination offset (e.g. \"100\")."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to return per page."
+              }
+            ]
+          },
+          "docs": "Returns a paginated list of courses available on Coursera."
+        },
+        {
+          "info": {
+            "name": "List on-demand specializations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coursera.org/api/onDemandSpecializations.v1",
+            "params": [
+              {
+                "name": "start",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List on-demand specializations"
+        },
+        {
+          "info": {
+            "name": "List partner organizations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coursera.org/api/partners.v1",
+            "params": [
+              {
+                "name": "start",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List partner organizations"
+        },
+        {
+          "info": {
+            "name": "List instructors",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coursera.org/api/instructors.v1",
+            "params": [
+              {
+                "name": "start",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List instructors"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
