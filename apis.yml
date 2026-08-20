@@ -37,6 +37,10 @@ apis:
   baseURL: https://api.coursera.org
   tags:
   - Catalog
+  - Read Only
+  - REST
+  tags_raw:
+  - Catalog
   - Read-only
   - REST
   properties:
@@ -51,6 +55,9 @@ apis:
   description: API for affiliate marketing partners to retrieve catalog data and tracking links.
   humanURL: https://building.coursera.org/
   tags:
+  - Affiliates
+  - Marketing
+  tags_raw:
   - Affiliate
   - Marketing
   properties:
