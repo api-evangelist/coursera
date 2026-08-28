@@ -6,6 +6,18 @@ description: Coursera is a global online learning platform offering courses, spe
   professional certificates, and degrees. The Catalog API provides public, read-only
   access to courses, instructors, partners, and categories; the Affiliate API supports
   partner programs.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: paid
   onboarding: approval
