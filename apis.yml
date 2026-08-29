@@ -86,6 +86,9 @@ apis:
   - type: OpenAPI
     url: openapi/coursera-catalog-api-openapi.yml
 common:
+- type: CapabilityMap
+  url: capabilities/coursera-capability-edges.yml
+  name: Coursera Business Capability Map
 - type: AgenticAccess
   url: agentic-access/coursera-agentic-access.yml
 - type: DomainSecurity

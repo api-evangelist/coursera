@@ -1,0 +1,25 @@
+slug: coursera
+provider: Coursera
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Education
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 1
+edges:
+- tag: Catalog
+  spec_file: coursera-catalog-api-openapi.yml
+  capability_id: BC-4700.40
+  capability_id_l1: BC-4700
+  capability_name: Programme Catalogue Management
+  confidence: 0.85
+  evidence: '"public, read-only access to Coursera''s catalog of courses, specializations, partners, and
+    instructors"; listCourses, listSpecializations'
+  reason: Read access to the published catalogue of courses and specializations offered to learners, which
+    is programme/course catalogue publication. Schemas Course, Specialization, Instructor corroborate.
