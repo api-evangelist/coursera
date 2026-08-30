@@ -49,7 +49,7 @@ apis:
   baseURL: https://api.coursera.org
   tags:
   - Catalog
-  - Read Only
+  - Read-only
   - REST
   tags_raw:
   - Catalog
