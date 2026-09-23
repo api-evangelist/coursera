@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: Coursera Catalog API
   description: 'The Coursera Catalog API provides public, read-only access to Coursera''s
@@ -7,9 +7,7 @@ info:
 
     return paginated JSON responses with `elements`, `paging`, and `linked`
 
-    fields. No authentication is required for the public catalog endpoints.
-
-    '
+    fields. No authentication is required for the public catalog endpoints.'
   version: v1
   contact:
     name: Coursera
@@ -158,25 +156,6 @@ paths:
                     type: object
 components:
   schemas:
-    Course:
-      type: object
-      properties:
-        id:
-          type: string
-        slug:
-          type: string
-        name:
-          type: string
-        courseType:
-          type: string
-          description: e.g. "v2.ondemand"
-    Paging:
-      type: object
-      properties:
-        next:
-          type: string
-        total:
-          type: string
     Specialization:
       type: object
       properties:
@@ -190,6 +169,13 @@ components:
           type: string
         description:
           type: string
+    Instructor:
+      type: object
+      properties:
+        id:
+          type: string
+        fullName:
+          type: string
     Partner:
       type: object
       properties:
@@ -199,10 +185,22 @@ components:
           type: string
         shortName:
           type: string
-    Instructor:
+    Paging:
+      type: object
+      properties:
+        next:
+          type: string
+        total:
+          type: string
+    Course:
       type: object
       properties:
         id:
           type: string
-        fullName:
+        slug:
           type: string
+        name:
+          type: string
+        courseType:
+          type: string
+          description: e.g. "v2.ondemand"
