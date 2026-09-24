@@ -60,8 +60,6 @@ apis:
     url: https://building.coursera.org/app-platform/catalog/
   - type: Endpoint
     url: https://api.coursera.org/api/courses.v1
-  - url: graphql/coursera-graphql.md
-    type: GraphQL
 - aid: coursera:affiliate-api
   name: Coursera Affiliate API
   description: API for affiliate marketing partners to retrieve catalog data and tracking links.
