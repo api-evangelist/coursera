@@ -169,29 +169,6 @@ components:
           type: string
         description:
           type: string
-    Instructor:
-      type: object
-      properties:
-        id:
-          type: string
-        fullName:
-          type: string
-    Partner:
-      type: object
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-        shortName:
-          type: string
-    Paging:
-      type: object
-      properties:
-        next:
-          type: string
-        total:
-          type: string
     Course:
       type: object
       properties:
@@ -204,3 +181,26 @@ components:
         courseType:
           type: string
           description: e.g. "v2.ondemand"
+    Partner:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        shortName:
+          type: string
+    Instructor:
+      type: object
+      properties:
+        id:
+          type: string
+        fullName:
+          type: string
+    Paging:
+      type: object
+      properties:
+        next:
+          type: string
+        total:
+          type: string
