@@ -181,6 +181,13 @@ components:
         courseType:
           type: string
           description: e.g. "v2.ondemand"
+    Paging:
+      type: object
+      properties:
+        next:
+          type: string
+        total:
+          type: string
     Partner:
       type: object
       properties:
@@ -196,11 +203,4 @@ components:
         id:
           type: string
         fullName:
-          type: string
-    Paging:
-      type: object
-      properties:
-        next:
-          type: string
-        total:
           type: string
