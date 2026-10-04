@@ -156,19 +156,6 @@ paths:
                     type: object
 components:
   schemas:
-    Specialization:
-      type: object
-      properties:
-        id:
-          type: string
-        slug:
-          type: string
-        name:
-          type: string
-        tagline:
-          type: string
-        description:
-          type: string
     Course:
       type: object
       properties:
@@ -196,6 +183,19 @@ components:
         name:
           type: string
         shortName:
+          type: string
+    Specialization:
+      type: object
+      properties:
+        id:
+          type: string
+        slug:
+          type: string
+        name:
+          type: string
+        tagline:
+          type: string
+        description:
           type: string
     Instructor:
       type: object
