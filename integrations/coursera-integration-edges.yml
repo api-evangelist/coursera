@@ -3,6 +3,8 @@ method: searched
 checked:
 - https://aws.amazon.com/marketplace/
 - https://site.imsglobal.org/certifications
+- okta/integrations/okta-integration-edges.yml
+- workday/integrations/workday-integration-edges.yml
 marketplace_apps: []
 edges:
 - partner_name: AWS Marketplace
@@ -59,3 +61,47 @@ edges:
       url: https://site.imsglobal.org/certifications/coursera-inc/coursera/v13
     detected_by: sweep-edtech.py
     detected: '2026-10-14'
+- partner_name: Okta (own)
+  partner: okta
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://www.okta.com/integrations/coursera/
+  mirror_of: okta/integrations/okta-integration-edges.yml
+  apps:
+  - Coursera
+  listing_count: 1
+  detected: '2026-10-14'
+  detected_by: mirror-platform-listings.py
+  category: Single Sign-On
+  badges:
+  - OKTA_VERIFIED
+  features:
+  - SAML
+  - SWA
+- partner_name: Workday (own)
+  partner: workday
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://marketplace.workday.com/apps/756152/coursera-integration-for-workday-learning
+  mirror_of: workday/integrations/workday-integration-edges.yml
+  apps:
+  - Coursera Integration for Workday Learning
+  listing_count: 1
+  detected: '2026-10-14'
+  detected_by: mirror-platform-listings.py
+  category: Region & Country
+  badges:
+  - Design Approved
+source:
+- okta/integrations/okta-integration-edges.yml
+- workday/integrations/workday-integration-edges.yml

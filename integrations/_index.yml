@@ -57,3 +57,29 @@
     detected: '2026-10-14'
   status: not-a-workflow
   arazzo: null
+- slug: coursera-okta-own
+  label: Okta (own)
+  partner: okta
+  partner_name: Okta (own)
+  category: Single Sign-On
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://www.okta.com/integrations/coursera/
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: coursera-workday-own
+  label: Workday (own)
+  partner: workday
+  partner_name: Workday (own)
+  category: Region & Country
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://marketplace.workday.com/apps/756152/coursera-integration-for-workday-learning
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
