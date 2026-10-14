@@ -15,3 +15,45 @@
   relationship: distribution-channel
   status: not-a-workflow
   arazzo: null
+- slug: coursera-1edtech
+  label: 1EdTech
+  partner_name: 1EdTech
+  category: 1EdTech certified products
+  type: contract
+  channel: standard-directory
+  evidence: https://site.imsglobal.org/certifications
+  source: edge
+  relationship: standard-participant
+  contract_reference:
+    register: 1EdTech certified product directory (TrustEd Apps)
+    spec_file: null
+    standard: 1EdTech
+    role: Affiliate Member
+    registered_name: Coursera, Inc.
+    matched_domain: coursera.org
+    matched_by: domain
+    standards:
+    - LTI Advantage
+    - LTI Advantage Complete
+    - Learning Tools Interoperability (LTI) v1.3
+    certified_products:
+    - product: Coursera
+      version: v1.3
+      standards:
+      - LTI Advantage
+      - LTI Advantage Complete
+      - Learning Tools Interoperability (LTI) v1.3
+      implementation:
+      - 'Extension: LTI Assignment & Grade Services 2.0'
+      - 'Extension: LTI Deep Linking 2.0'
+      - 'Extension: LTI Names and Role Provisioning Services 2.0'
+      - 'Type: Tool'
+      attributes:
+      - Certified Product
+      - Vetted
+      lapsed: false
+      url: https://site.imsglobal.org/certifications/coursera-inc/coursera/v13
+    detected_by: sweep-edtech.py
+    detected: '2026-10-14'
+  status: not-a-workflow
+  arazzo: null
