@@ -156,6 +156,13 @@ paths:
                     type: object
 components:
   schemas:
+    Paging:
+      type: object
+      properties:
+        next:
+          type: string
+        total:
+          type: string
     Course:
       type: object
       properties:
@@ -168,22 +175,6 @@ components:
         courseType:
           type: string
           description: e.g. "v2.ondemand"
-    Paging:
-      type: object
-      properties:
-        next:
-          type: string
-        total:
-          type: string
-    Partner:
-      type: object
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-        shortName:
-          type: string
     Specialization:
       type: object
       properties:
@@ -196,6 +187,15 @@ components:
         tagline:
           type: string
         description:
+          type: string
+    Partner:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        shortName:
           type: string
     Instructor:
       type: object
