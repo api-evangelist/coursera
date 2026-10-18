@@ -33,6 +33,11 @@ accessModel:
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/coursera.png
 tags:
 - EdTech
+- E-Learning
+- Catalog
+- MOOC
+tags_raw:
+- EdTech
 - Online Learning
 - Catalog
 - MOOC
