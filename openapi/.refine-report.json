@@ -4,17 +4,16 @@
     "_original/coursera-openapi.yml"
   ],
   "outputs": [
-    "coursera-catalog-api-openapi.yml"
+    "coursera-search-v1-controller-api-openapi.yml"
   ],
   "archived": [],
   "errors": [],
   "warnings": [],
   "notes": [
     "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
-    "coursera-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "apis.yml register: already-registered"
+    "coursera-openapi.yml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
+    "coursera-openapi.yml: declared missing tag: search-v1-controller",
+    "apis.yml register: written (+1 apis, 3 total)"
   ],
-  "skipped": [
-    "coursera-catalog-api-openapi.yml: previously refined output, superseded by openapi/_original/"
-  ]
+  "skipped": []
 }

@@ -1,0 +1,12 @@
+{
+ "url": "https://api.coursera.org/openapi.yaml",
+ "final": "https://api.coursera.org/openapi.yaml",
+ "status": 200,
+ "content_type": "binary/octet-stream",
+ "bytes": 1891,
+ "sha256": "1ae07e57a2fec51c9cefdc830a6a5bd47a35323a5611589794320c1bfb537f7d",
+ "fetched_at": "2026-10-19",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "byte-identical",
+ "note": "re-archived: the provider's current document replaced a stale archive (roadmap#793); the old files are in openapi/_superseded/2026-10-19-stale"
+}

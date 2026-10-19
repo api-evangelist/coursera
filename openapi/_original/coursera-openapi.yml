@@ -1,200 +1,81 @@
-openapi: 3.1.0
+openapi: 3.0.1
 info:
-  title: Coursera Catalog API
-  description: |
-    The Coursera Catalog API provides public, read-only access to Coursera's
-    catalog of courses, specializations, partners, and instructors. Endpoints
-    return paginated JSON responses with `elements`, `paging`, and `linked`
-    fields. No authentication is required for the public catalog endpoints.
+  title: Search API
   version: v1
-  contact:
-    name: Coursera
-    url: https://building.coursera.org/app-platform/catalog/
 servers:
-  - url: https://api.coursera.org
-    description: Coursera Catalog API
+  - url: https://www.coursera.org
+    description: API schema for search APIs exposed to 3rd party services (e.g. OpenAI)
 tags:
-  - name: Catalog
-    description: Public catalog browsing
+  - name: SearchV1Controller
+    description: the Search V1 Controller API
 paths:
-  /api/courses.v1:
-    get:
-      tags: [Catalog]
-      summary: List courses
-      description: Returns a paginated list of courses available on Coursera.
-      operationId: listCourses
-      parameters:
-        - in: query
-          name: start
-          required: false
-          schema:
-            type: string
-          description: Pagination offset (e.g. "100").
-        - in: query
-          name: limit
-          required: false
-          schema:
-            type: integer
-          description: Number of results to return per page.
+  /api/rest/v1/search:
+    post:
+      summary:
+        A public API that searches the Coursera catalog for products (e.g. courses) that
+        are relevant to the provided query string.
+      tags:
+        - search-v1-controller
+      operationId:
+        search
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchQuery'
+        required: true
       responses:
-        '200':
-          description: A paginated list of courses.
+        "200":
+          description: OK
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  elements:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/Course'
-                  paging:
-                    $ref: '#/components/schemas/Paging'
-                  linked:
-                    type: object
-  /api/onDemandSpecializations.v1:
-    get:
-      tags: [Catalog]
-      summary: List on-demand specializations
-      operationId: listSpecializations
-      parameters:
-        - in: query
-          name: start
-          required: false
-          schema:
-            type: string
-        - in: query
-          name: limit
-          required: false
-          schema:
-            type: integer
-      responses:
-        '200':
-          description: A paginated list of specializations.
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  elements:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/Specialization'
-                  paging:
-                    $ref: '#/components/schemas/Paging'
-                  linked:
-                    type: object
-  /api/partners.v1:
-    get:
-      tags: [Catalog]
-      summary: List partner organizations
-      operationId: listPartners
-      parameters:
-        - in: query
-          name: start
-          required: false
-          schema:
-            type: string
-        - in: query
-          name: limit
-          required: false
-          schema:
-            type: integer
-      responses:
-        '200':
-          description: A paginated list of partner organizations.
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  elements:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/Partner'
-                  paging:
-                    $ref: '#/components/schemas/Paging'
-                  linked:
-                    type: object
-  /api/instructors.v1:
-    get:
-      tags: [Catalog]
-      summary: List instructors
-      operationId: listInstructors
-      parameters:
-        - in: query
-          name: start
-          required: false
-          schema:
-            type: string
-        - in: query
-          name: limit
-          required: false
-          schema:
-            type: integer
-      responses:
-        '200':
-          description: A paginated list of instructors.
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  elements:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/Instructor'
-                  paging:
-                    $ref: '#/components/schemas/Paging'
-                  linked:
-                    type: object
+                $ref: '#/components/schemas/SearchResponse'
 components:
   schemas:
-    Course:
+    SearchQuery:
       type: object
       properties:
-        id:
+        query:
           type: string
-        slug:
-          type: string
+      required:
+        - query
+      example:
+        query: machine learning
+    SearchResponse:
+      properties:
+        hits:
+          type: array
+          items:
+            $ref: '#/components/schemas/SearchHit'
+    SearchHit:
+      type: object
+      properties:
         name:
           type: string
-        courseType:
+        partners:
+          type: array
+          items:
+            type: string
+        duration:
           type: string
-          description: e.g. "v2.ondemand"
-    Specialization:
-      type: object
-      properties:
-        id:
+        partnerLogos:
+          type: array
+          items:
+            type: string
+        productDifficultyLevel:
           type: string
-        slug:
+        entityType:
           type: string
-        name:
+        avgProductRating:
           type: string
-        tagline:
+        skills:
           type: string
-        description:
+        imageUrl:
           type: string
-    Partner:
-      type: object
-      properties:
-        id:
-          type: integer
-        name:
+        isCourseFree:
           type: string
-        shortName:
+        isPartOfCourseraPlus:
           type: string
-    Instructor:
-      type: object
-      properties:
-        id:
-          type: string
-        fullName:
-          type: string
-    Paging:
-      type: object
-      properties:
-        next:
-          type: string
-        total:
+        objectUrl:
           type: string

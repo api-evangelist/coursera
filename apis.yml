@@ -78,16 +78,16 @@ apis:
   properties:
   - type: Documentation
     url: https://building.coursera.org/
-- aid: coursera:coursera-catalog-api
-  name: Coursera Catalog API
-  description: Public catalog browsing
+- aid: coursera:coursera-search-v1-controller-api
+  name: Coursera Search V1 Controller API
+  description: The search-v1-controller API from Coursera — 1 operation(s) for search-v1-controller.
   humanURL: https://building.coursera.org/app-platform/catalog/
   baseURL: https://api.coursera.org
   tags:
-  - Catalog
+  - search-v1-controller
   properties:
   - type: OpenAPI
-    url: openapi/coursera-catalog-api-openapi.yml
+    url: openapi/coursera-search-v1-controller-api-openapi.yml
 common:
 - type: CapabilityMap
   url: capabilities/coursera-capability-edges.yml
