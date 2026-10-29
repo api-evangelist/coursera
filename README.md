@@ -1,4 +1,4 @@
-# Coursera (coursera)
+# Coursera
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,71 +66,122 @@
 
 Coursera is a global online learning platform offering courses, specializations, professional certificates, and degrees. The Catalog API provides public, read-only access to courses, instructors, partners, and categories; the Affiliate API supports partner programs.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/coursera/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/coursera/refs/heads/main/apis.yml)
+**Areas:** EdTech · E-Learning · Catalog · MOOC
 
-## Tags
+## Coursera on APIs.io
 
-- EdTech
-- Online Learning
-- Catalog
-- MOOC
+Everything profiled for Coursera is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/coursera/](https://apis.io/providers/coursera/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (3)
 
-- **Created:** 2026-05-08
-- **Modified:** 2026-05-08
+- [Coursera Catalog API](https://apis.io/apis/coursera/catalog-api/) — Public REST API for browsing Coursera's catalog of courses, specializations, instructors, partners, and categories. Verified live at…
+- [Coursera Affiliate API](https://apis.io/apis/coursera/affiliate-api/) — API for affiliate marketing partners to retrieve catalog data and tracking links.
+- [Coursera Catalog API](https://apis.io/apis/coursera/coursera-catalog-api/) — Public catalog browsing
 
-## APIs
+### Published properties
 
-### Coursera Catalog API
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-Public REST API for browsing Coursera's catalog of courses, specializations, instructors, partners, and categories. Verified live at api.coursera.org/api/courses.v1 with 21,000+ courses.
+#### GraphQL (1)
 
-- **Human URL:** [https://building.coursera.org/app-platform/catalog/](https://building.coursera.org/app-platform/catalog/)
-- **Base URL:** `https://api.coursera.org`
+GraphQL schemas.
 
-#### Tags
+- [Moved to /providers/coursera/](https://apis.io/graphqls/coursera/coursera-graphql/)
 
-- Catalog
-- Read-only
-- REST
+#### Agentic access (1)
 
-#### Properties
+Which operations an agent can call, which act, and which need a human in the loop.
 
-- [Documentation](https://building.coursera.org/app-platform/catalog/)
-- [Endpoint](https://api.coursera.org/api/courses.v1)
-- [Postman Collection](collections/coursera.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/coursera.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Coursera Agentic Access](https://apis.io/agentic-access/coursera/coursera-agentic-access/)
 
-### Coursera Affiliate API
+#### Collections (2)
 
-API for affiliate marketing partners to retrieve catalog data and tracking links.
+Postman and Open Collection request collections.
 
-- **Human URL:** [https://building.coursera.org/](https://building.coursera.org/)
+- [Coursera Catalog API](https://apis.io/collections/coursera/open-coursera/)
+- [Coursera Catalog API](https://apis.io/collections/coursera/open-coursera-catalog-api/)
 
-#### Tags
+#### Security (1)
 
-- Affiliate
-- Marketing
+Authentication, trust centre, and vulnerability disclosure.
 
-#### Properties
+- [Coursera Domain Security](https://apis.io/security/coursera/coursera-domain-security/)
 
-- [Documentation](https://building.coursera.org/)
-- [Postman Collection](collections/coursera.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/coursera.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Plans and pricing (1)
 
-## Common Properties
+Published plans, tiers and prices.
 
-- [GitHub Organization](https://github.com/coursera)
-- [LinkedIn](https://www.linkedin.com/company/coursera)
+- [Coursera Plans Pricing](https://apis.io/plans/coursera/coursera-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Coursera Rate Limits](https://apis.io/rate-limits/coursera/coursera-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Coursera Finops](https://apis.io/finops/coursera/coursera-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
 - [Website](https://www.coursera.org/)
-- [Developer](https://building.coursera.org/)
-- [Plans](plans/coursera-plans-pricing.yml)
-- [Rate Limits](rate-limits/coursera-rate-limits.yml)
-- [Fin Ops](finops/coursera-finops.yml)
-- [Integrations](https://www.coursera.org/partners)
+- [Blog](https://blog.coursera.org/feed/)
+- [GitHub](https://github.com/coursera)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 18.1** — emerging · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 48.2 |
+| Contract quality | 42.9 |
+| Contract governance | 0.0 |
+| Operational transparency | 7.9 |
+| Developer ergonomics | 11.9 |
+| Access clarity | 5.3 |
+
+**Agent readiness 17.8** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | na |
+| MCP Server | — |
+| Auth Clarity | — |
+| Idempotency | na |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | na |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 5.9** — Education & Research
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/coursera/](https://apis.io/providers/coursera/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Coursera: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/coursera/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
